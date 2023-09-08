@@ -1,6 +1,6 @@
 package logica;
 
-public class Ingrediente {
+public class Ingrediente implements Producto{
 	
 	private String nombre;
 	private int costoAdicional;
@@ -16,5 +16,17 @@ public class Ingrediente {
 	
 	public int getCostoAdicional() {
 		return costoAdicional;
+	}
+
+	@Override
+	public int getPrecio() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String generarTextoFactura() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

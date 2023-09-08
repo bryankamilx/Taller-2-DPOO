@@ -20,8 +20,9 @@ public class Pedido {
 		return idPedido;
 	}
 	
-	public void agregarProducto(Producto nuevoItem) {
-		itemsPedido.add(nuevoItem);
+	public void agregarProducto(Producto productoAgregado) {
+		ArrayList<Producto> itemsPedido = new ArrayList<Producto>();
+		itemsPedido.add(productoAgregado);
 	}
 	
 	private int getPrecioNetoPedido(){

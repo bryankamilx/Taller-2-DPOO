@@ -15,16 +15,17 @@ public class Restaurante {
 	private ArrayList<Ingrediente> ingredientes;
 
 
-	
 	public Restaurante() {
 		
 	}
 	
 	public void iniciarPedido(String nombreCliente, String direccionCliente) {
+		
 		Pedido nuevoPedido = new Pedido(nombreCliente,direccionCliente);
 		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+		this.pedidoEnCurso = nuevoPedido;
 		pedidos.add(nuevoPedido);
-		pedidoEnCurso = nuevoPedido;
+		
 	}
 	
 	public void cerrarYGuardarPedido() {
@@ -50,40 +51,55 @@ public class Restaurante {
 	}
 	
 	private void cargarIngredientes(String archivoIngredientes) throws IOException {
+		String[] nombresIngredientes = new String[15];
+		int[] preciosIngredientes = new int[15];
+		
 		System.out.println("\n"+"INGREDIENTES");
 		FileReader file = new FileReader(archivoIngredientes);
 		BufferedReader br = new BufferedReader(file);
-		String message = "";
 		String line = br.readLine();
+		int i = 0;
+		this.menuBase = new ArrayList<ProductoMenu>();
 		while(line != null) {
-		message += line + " ";
-		line = br.readLine();
-		if (line != null){
-		System.out.println(line.replace(";",": "));
-		}
-		else {
-		System.out.println("\n");
-		}
-		}
+			line = br.readLine();
+			if (line !=null) {
+			String[] fragmentos = line.split(";");
+			nombresIngredientes[i]=fragmentos[0];
+			preciosIngredientes[i]=Integer.parseInt(fragmentos[1]);
+			ProductoMenu nuevoProducto = new ProductoMenu(nombresIngredientes[i],preciosIngredientes[i]);
+			menuBase.add(nuevoProducto);
+			System.out.println(i+1+". "+nombresIngredientes[i]+": "+preciosIngredientes[i]);
+			i+=1;
+			}
+			}
+		
 		br.close();
 	}
 	
 	private void cargarMenu(String archivoMenu) throws IOException {
+		
+		String[] nombresProductos = new String[22];
+		int[] preciosProductos = new int[22];
+		
 		System.out.println("\n"+"MENU");
 		FileReader file = new FileReader(archivoMenu);
 		BufferedReader br = new BufferedReader(file);
-		String message = "";
 		String line = br.readLine();
+		int i = 0;
+		this.menuBase = new ArrayList<ProductoMenu>();
 		while(line != null) {
-		message += line + " "; 
-		line = br.readLine();
-		if (line != null){
-		System.out.println(line.replace(";",": "));
-		}
-		else {
-		System.out.println("\n");
-		}
-		}
+			line = br.readLine();
+			if (line !=null) {
+			String[] fragmentos = line.split(";");
+			nombresProductos[i]=fragmentos[0];
+			preciosProductos[i]=Integer.parseInt(fragmentos[1]);
+			ProductoMenu nuevoProducto = new ProductoMenu(nombresProductos[i],preciosProductos[i]);
+			menuBase.add(nuevoProducto);
+			System.out.println(i+1+". "+nombresProductos[i]+": "+preciosProductos[i]);
+			i+=1;
+			}
+			}
+		
 		br.close();
 	}
 	
@@ -91,10 +107,8 @@ public class Restaurante {
 		System.out.println("\n"+"COMBOS");
 		FileReader file = new FileReader(archivoCombos);
 		BufferedReader br = new BufferedReader(file);
-		String message = "";
 		String line = br.readLine();
 		while(line != null) {
-		message += line + " "; 
 		line = br.readLine();
 		if (line != null){
 			System.out.println(line.replaceFirst(";", ": "));
