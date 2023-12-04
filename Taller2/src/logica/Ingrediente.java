@@ -1,32 +1,31 @@
 package logica;
 
-public class Ingrediente implements Producto{
+
+
+public class Ingrediente {
+
+	public String nombre;
 	
-	private String nombre;
-	private int costoAdicional;
+	public int costoAdicional;
 	
-	public Ingrediente(String nombre,int costoAdicional) {
+	public int calorias;
+
+	public Ingrediente(String nombre, int costoAdicional, int calorias) {
 		this.nombre = nombre;
 		this.costoAdicional = costoAdicional;
+		this.calorias = calorias;
 	}
 	
 	public String getNombre() {
 		return nombre;
 	}
-	
+
 	public int getCostoAdicional() {
 		return costoAdicional;
 	}
 
-	@Override
-	public int getPrecio() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getCalorias() {
+		return calorias;
 	}
-
-	@Override
-	public String generarTextoFactura() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

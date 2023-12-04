@@ -3,31 +3,60 @@ package logica;
 import java.util.ArrayList;
 
 public class Combo implements Producto{
-	private double descuento;
-	private String nombreCombo;
+
+	public double descuento;
+	
+	public String nombreCombo;
+
 	private ArrayList<ProductoMenu> itemsCombo;
 	
-	public Combo(double descuento, String nombreCombo) {
+	public Combo(String nombre, double descuento, ArrayList<ProductoMenu> itemsCombo) {
+		this.nombreCombo = nombre;
 		this.descuento = descuento;
-		this.nombreCombo = nombreCombo;
+		this.itemsCombo = itemsCombo;
 	}
 	
-	public void agregarItemACombo(Producto itemCombo) {
-		
+	public ArrayList<ProductoMenu> getItemsCombo() {
+		return itemsCombo;
+	}
+
+	public void setItemsCombo(ArrayList<ProductoMenu> itemsCombo) {
+		this.itemsCombo = itemsCombo;
+	}
+
+	public void agregarItemACombo(ProductoMenu itemCombo) {
+		itemsCombo.add(itemCombo);
 	}
 	
-	public int getPrecio() {
-		return this.getPrecio();
-		
-	}
-	
-	public String generarTextoFactura() {
-		return this.generarTextoFactura();
-	}
-	
+	@Override
 	public String getNombre() {
-		return this.nombreCombo;
+		return nombreCombo;
 	}
 	
+	@Override
+	public int getPrecio() {
+		int precio = 0;
+		for (ProductoMenu item:itemsCombo) {
+			int iteracion = item.getPrecio();
+			precio = precio + iteracion;
+		}
+		precio = (int) (precio - (precio*descuento));
+		return precio;
+	}
+	
+	@Override
+	public String getTextoFactura() {
+		return null;
+	}
+
+	@Override
+	public int getCaloria() {
+		int calorias = 0;
+		for (ProductoMenu item:itemsCombo) {
+			int iteracion = item.getCaloria();
+			calorias = calorias + iteracion;
+		}
+		return calorias;
+	}
 	
 }

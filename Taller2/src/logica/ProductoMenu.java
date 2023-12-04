@@ -1,28 +1,36 @@
 package logica;
 
 public class ProductoMenu implements Producto{
+
+	public String nombre;
 	
-	private String nombre;
-	private int precioBase;
+	public int precioBase;
 	
-	public ProductoMenu(String nombre, int precioBase) {
+	public int calorias;
+
+	public ProductoMenu(String nombre, int precioBase, int calorias) {
 		this.nombre = nombre;
 		this.precioBase = precioBase;
+		this.calorias = calorias;
+	}
+
+	public int getCaloria() {
+		return calorias;
 	}
 	
+	@Override
 	public String getNombre() {
 		return nombre;
 	}
 	
+	@Override
 	public int getPrecio() {
 		return precioBase;
 	}
-	
-	public String generarTextoFactura() {
-		String factura = "El nombre es" + this.nombre + " y el precio base es " + this.precioBase;
-		return factura;
+
+	@Override
+	public String getTextoFactura() {
+		return null;
 	}
 	
-		
-
 }

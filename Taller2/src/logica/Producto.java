@@ -1,10 +1,14 @@
 package logica;
 
-public interface Producto {
-	
+public abstract interface Producto {
+
 	public int getPrecio();
-	
+
 	public String getNombre();
+
+	public String getTextoFactura();
 	
-	public String generarTextoFactura();
+	public int getCaloria();
+
+	
 }
